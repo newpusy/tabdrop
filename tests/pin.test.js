@@ -60,3 +60,14 @@ test('listPins returns all pinned sessions', () => {
   expect(pins).toHaveLength(2);
   expect(pins.map(p => p.name)).toEqual(['a', 'b']);
 });
+
+test('listPins returns empty array when no sessions are pinned', () => {
+  const pins = listPins();
+  expect(pins).toEqual([]);
+});
+
+test('pinSession persists to disk', () => {
+  pinSession('persist', '/persist.md');
+  const raw = JSON.parse(fs.readFileSync(PINS_FILE, 'utf8'));
+  expect(raw.some(p => p.name === 'persist')).toBe(true);
+});
