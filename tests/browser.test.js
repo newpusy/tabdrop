@@ -29,3 +29,7 @@ test('getOpenTabs accepts explicit browser arg', async () => {
   const tabs = await getOpenTabs('chrome');
   expect(Array.isArray(tabs)).toBe(true);
 });
+
+test('getOpenTabs rejects unsupported browser', async () => {
+  await expect(getOpenTabs('safari')).rejects.toThrow();
+});
