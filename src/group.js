@@ -63,4 +63,11 @@ function removeFromGroup(name, sessionId) {
   return groups[name];
 }
 
-module.exports = { ensureGroupsFile, loadGroups, saveGroups, setGroup, getGroup, removeGroup, listGroups, addToGroup, removeFromGroup };
+/**
+ * Returns all groups that contain the given sessionId.
+ */
+function getGroupsForSession(sessionId) {
+  return Object.values(loadGroups()).filter(group => group.sessionIds.includes(sessionId));
+}
+
+module.exports = { ensureGroupsFile, loadGroups, saveGroups, setGroup, getGroup, removeGroup, listGroups, addToGroup, removeFromGroup, getGroupsForSession };
