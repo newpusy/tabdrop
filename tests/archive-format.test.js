@@ -19,6 +19,12 @@ test('formatArchiveList with entries', () => {
   expect(result).toContain('2. b.json');
 });
 
+test('formatArchiveList with single entry', () => {
+  const result = formatArchiveList(['only.json']);
+  expect(result).toContain('Archives:');
+  expect(result).toContain('1. only.json');
+});
+
 test('formatArchiveSaved', () => {
   expect(formatArchiveSaved('my.json')).toBe('Session archived as: my.json');
 });
